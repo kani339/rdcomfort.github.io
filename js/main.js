@@ -16,9 +16,7 @@ $(function(){
 	});
 
 	//Remove lightbox after refreshing page
-	history.pushState("", document.title, window.location.pathname);
-
+	//history.pushState("", document.title, window.location.pathname);
 	
-
 	
 });
