@@ -7,20 +7,22 @@ a {
   text-decoration: none !important;
   color: #222222;
 }
-a:hover {
+a:hover,
+a:active {
   color: #ff0000;
-  cursor: pointer;
 }
+
 
 @font-face {
   font-family: "Museo Sans Cyrl 100";
   src: url(font/Museo Sans Cyrl 100.ttf);
 }
+
 html,body {
   color: #191818;
   font-size: 14px;
   font-family: "Museo Sans Cyrl 100", sans-serif;
-  animation: fadein 4.5s
+  animation: fadein 4.5s;
   height: 100%;
 }
 /* Animate  on Loading page*/
@@ -33,11 +35,19 @@ html,body {
   }
 }
 
-
 .page-wrapper {
-  height:100%;
-  margin-bottom: -100px;
+  min-height:100%;
+  margin-bottom: -115px;
+}
 
+.page-wrapper:after {
+  content:"";
+  display: block;
+}
+
+#footer,
+.page-wrapper:after {
+  height: 115px;
 }
 
 .inner-header {
@@ -53,20 +63,12 @@ header h1 {
   position: relative;
   bottom: 18px;
 }
-/*Navigation*/
-/*
-.navbar .navbar-default{
-  z-index: 999;
-  width: 100%;
-// min-height: 90px;
-	border:none;
-}
-*/
+
 
 .navbar-default {
   z-index:99;
-  font-size: 14px;
-  background-color: rgba(248,248,248,.6);
+  font-size: 16px;
+  background-color: rgba(255,255,255,.6);
 }
 
 .navbar-nav a {
@@ -103,7 +105,8 @@ header h1 {
     transition: width .3s;
 }
 
-.navbar-nav .active {
+.navbar-nav .active,
+.active a {
   color: #ff0000 !important; 
 }
 
@@ -312,9 +315,8 @@ header h1 {
 }
 /* Footer */
 #footer {
-  margin-top: 50px;
+  margin-top: 120px;
   border-top: 2px solid #222;
-   position:relative;
 }
 
 .footer-content .logo {
@@ -326,27 +328,18 @@ header h1 {
   right: 88px;
   float: right;
 }
+
 .footer-content {
   margin-top: 20px;
   float: right;
   margin-right: 100px;
 }
+
 .footer-content p {
   text-align: right;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: normal;
-}
-
-
-#footer,
-.page-wrapper:after {
-  height: 115px;
-}
-
-.page-wrapper:after {
-  content:"";
-  display: block;
 }
 
 .hidden {
@@ -360,12 +353,11 @@ header h1 {
   margin-top: 70px;
   text-align: left;
   position: relative;
-
 }
 .portfolio-nav ul {
   list-style-type: none;
   position: absolute;
-    border-bottom: 1px solid rgb(236, 236, 236);
+  border-bottom: 1px solid rgb(236, 236, 236);
   width: 100%;
 }
 
@@ -373,7 +365,7 @@ header h1 {
     display: inline-block;
     text-decoration: none;
     text-align: center;
-    width: 16.35%;
+    width: 13%;
 }
 
 .portfolio-nav a:hover{
@@ -391,7 +383,7 @@ header h1 {
   top:19px;
 }
 
-.portfolio-nav a:hover:after  {
+.portfolio-nav li.active a:after {
   width: 100%;
   background: red;
   position:relative;
@@ -404,6 +396,11 @@ header h1 {
   padding-bottom: 20px;
   position:relative;
   top:2px;
+}
+
+
+.portfolio-nav li.active a{
+  color:red;
 }
 
 
@@ -443,4 +440,97 @@ header h1 {
 
 .modal-body {
   padding:5px;
+}
+
+/*contact form*/
+
+.contact-t-b{
+  padding:150px 0;
+}
+.contact-bg{
+  background: url('../images/contact_bg.png') no-repeat;
+}
+.contact-bg textarea, .contact-bg input {
+  background-color: rgba(255,255,255,.5);
+  border:1px solid #888787;
+  width:100%;
+  margin-bottom:20px;
+  padding:10px;
+  resize: none;
+}
+.contact-bg input:nth-child(4){
+  width: 78%;
+}
+.contact-bg button{float:right;}
+.contact-bg ul li{
+  list-style: none;
+}
+.contact-bg ul.list li:not(:first-child) {
+  padding-top:62px;
+}
+.list li a:before{
+  content: '';
+  height:30px;
+  width:30px;
+  display: inline-block;
+  top: 10px;
+  position: relative;
+  padding-right: 44px;
+}
+.list li a.phone:before{
+  background: url('../images/icons/phone.png') no-repeat;
+}
+.list li a.fb:before{
+  background: url('../images/icons/fb.png') no-repeat;
+}
+.list li a.email:before{
+  background: url('../images/icons/email.png') no-repeat;
+}
+.list li a.insta:before{
+  background: url('../images/icons/insta.png') no-repeat;
+}
+.list li a.time:before{
+  background: url('../images/icons/time.png') no-repeat;
+}
+.list li a, .phone{
+  -webkit-transition: ease-in-out .5s;
+  -moz-transition: ease-in-out .5s;
+  -ms-transition: ease-in-out .5s;
+  -o-transition: ease-in-out .5s;
+  transition: ease-in-out .5s ;
+}
+.list li a:hover, a:hover.phone{
+  color:red;
+  -webkit-transition: ease-in-out .5s;
+  -moz-transition: ease-in-out .5s;
+  -ms-transition: ease-in-out .5s;
+  -o-transition: ease-in-out .5s;
+  transition: ease-in-out .5s ;
+}
+.list a:hover.phone:before{
+  background: url('../images/icons/phone-hovered.png') no-repeat;
+}
+.list a:hover.fb:before{
+  background: url('../images/icons/fb-hovered.png') no-repeat;
+}
+.list a:hover.email:before{
+  background: url('../images/icons/email-hovered.png') no-repeat;
+}
+.list a:hover.insta:before{
+  background: url('../images/icons/insta-hovered.png') no-repeat;
+}
+.list a:hover.time:before{
+  background: url('../images/icons/time-hovered.png') no-repeat;
+}
+
+/*left right*/
+.left{float:left;}
+.right:{float:right;}
+
+/*nav fix*/
+.navbar {
+  border-radius: 0px !important;
+}
+.navbar-default {
+  border-color: transparent !important;
 }
