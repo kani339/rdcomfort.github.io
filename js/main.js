@@ -1,14 +1,27 @@
 $(function(){
 	
-	
-	function activeItem() {
+	var currFilter = localStorage.setItem("currFilter",'.office');;
+
+	function activeItem() {			
 		var sect = localStorage.getItem('section');
+		//changeFilter(); 
 		$('#portfolio_grid').mixItUp({
 			load: {
 				filter: '.'+sect
 			}
-		});	
+		});
 	}
+
+	$(".filter").on("click", function() {
+			currFilter = localStorage.getItem("currFilter");
+			$(currFilter + " > a").removeAttr("data-fancybox").removeClass("fancybox");
+			var activeFilter = $(this).attr("data-filter");
+			//Set new active filter
+			var setActive = $(activeFilter +"> a").attr('data-fancybox', 'images').addClass('fancybox');
+			$('[data-fancybox="images"]').fancybox({});
+			currFilter = localStorage.setItem("currFilter",activeFilter);
+	}); 
+
 
 
 	$(".image-portfolio").on('click', function(){
@@ -19,9 +32,12 @@ $(function(){
 	});
 
 
+
 	if(localStorage.getItem("state")=="true") {
        activeItem();
    } else {
+   		$(".office > a").attr('data-fancybox', 'images').addClass('fancybox');
+   		$('[data-fancybox="images"]').fancybox({});
     	$('#portfolio_grid').mixItUp({
 				load: {
 			      filter: '.office'
@@ -30,38 +46,6 @@ $(function(){
     }
     //default state
     localStorage.setItem("state", "false");
-		
-
-	//Add uniq id for modal-window
-	/*$(".mix").each(function(i){
-		$(this).find("a").attr("data-target", "#portf_"+ i);
-		$(this).find(".fade").attr("id", "portf_" + i);
-	});
-
-	//take same image url
-	$(".mix").each(function(y){
-		var src = $(this).find("img").attr("src");
-		var l = $(".modal-body img")[y];
-		$(".modal-body").find(l).attr("src", src);
-	});*/
-
-
-
-	//Add uniq id for modal-window
-	/*$(".mix").each(function(i){
-		$(this).find("a").eq(0).attr("data-target", "#portf_"+ i);
-		$(this).find(".fade").attr("id", "portf_" + i);
-	});
-
-
-	//take same image url
-	$(".mix").each(function(y){
-		var src = $(this).find("img").attr("src");
-		var l = $(".modal-body > img")[y];
-		$(".modal-body").find(l).attr("src", src);
-	});*/
-
-	
 
 
 	var navOffset = $('.navbar').offset().top;
@@ -77,28 +61,23 @@ $(function(){
 		} else {
 			$(".navbar").removeClass("fixed");
 		}
-
-		if(scrollPos > 880) {
-			$('.navbar-default').css('background-color','rgba(255,255,255,1)');
-		} else {
-			$('.navbar-default').css('background-color','rgba(255,255,255,.6)');
-		}
-
 	});
 
-	/*Scroll To Top*/
 
+	/*Scroll To Top*/
 	var backToTop = $(".back-to-top");
 	$(window).on("scroll", function() {
 		var self = $(this),
 				height = self.height(),
 				top = self.scrollTop();
 		if(top > height) {
+			$(".navbar-default").css("background-color","rgba(255,255,255,1)")
 			if (!backToTop.is(":visible")) {
 				backToTop.fadeIn();
 			}
 		}else {
 			backToTop.fadeOut();
+			$(".navbar-default").css("background-color","rgba(255,255,255,.6)")
 		}
 	});
 
@@ -107,53 +86,33 @@ $(function(){
 			scrollTop: 0
 		}, 900);
 		e.preventDefault();
+	});		
+
+
+	$(".scrollIt").click(function() {
+    $('html, body').animate({
+        scrollTop: $(".scrollPoint").offset().top-140
+    }, 1500);
 	});
 
+	// The function actually applying the offset
+	function offsetAnchor() {
+	  if (location.hash.length !== 0) {
+	    window.scrollTo(window.scrollX, window.scrollY);
+	  }
+	}
 
-	$('[data-fancybox="images"]').fancybox({
-		
-   });
-	
+	// Captures click events of all a elements with href starting with #
+	$(document).on('click', 'a[href^="#"]', function(event) {
+	  // Click events are captured before hashchanges. Timeout
+	  // causes offsetAnchor to be called after the page jump.
+	  window.setTimeout(function() {
+	    offsetAnchor();
+	  }, 0);
+	});
 
-	//Portfolio slide
-/*
-		var next = $(".next");
-		var prev = $(".prev");
-		var item = $('.modal-body > img');
-		item.first().addClass("active")
-		
-		next.click(function(){
-				var item = $('.modal-body > img');
-        var index = + $('.modal-body > img').index($('.modal-body > img.active'));
-        index = (item.length - 1 === index) ? 0 : index + 1;
-        item.removeClass('active');
-        item = item.eq(index).addClass("active");
-        
-  	});*/
-
-/*  	var next = $(".next"),
-  			prev = $(".prev"),
-  			item = $(".modal-body > img"),
-  			total = $(".modal-body > img").length-1;
+	// Set the offset when entering page with hash present in the url
+	window.setTimeout(offsetAnchor, 0);
 
 	
-  var mixImg = $(".mix");
-
-  	mixImg.on("click", function(){
-
-  		var i = $(this).index();	
-  		item.eq(i).addClass("active");
-
-	  	next.on("click", function(){ 
-
-	  		//item.eq(i).removeClass("active")
-	  		var n = i+1;
-	  		var nxtImg = item.eq(n).prop('src');
-	  		item.eq(i).prop('src', nxtImg);
-	  	});
-  	});
-  */
-
-
-
 });
