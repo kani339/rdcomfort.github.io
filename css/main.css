@@ -442,10 +442,11 @@ span.lang li {
 
 /* Portfolio modal */
 
-/* #portfolio_grid .mix {
+ 
+#portfolio_grid .mix {
   display: none;
 }
- */
+ 
 .modal-header {
   border-bottom:none;
 }
@@ -454,21 +455,6 @@ span.lang li {
   width: 100%;
 
 }
-
-/* 
-.modal-body img.active {
-  display: block;
-}
-
-.modal-body {
-  padding:5px;
-} */
-
-
-
-
-
-
 
 /*contact form*/
 
