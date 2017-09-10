@@ -14,8 +14,9 @@ a:active {
   color: #ff0000;
 }
 
-input[type="email"]:invalid {
-  border:2px solid red;
+.form > input {
+  border:none;
+  outline: none;
 }
 
 
@@ -24,10 +25,11 @@ input[type="email"]:invalid {
   src: url(fonts/Museo Sans Cyrl 100.ttf);
 }
 
+
 html,body {
   color: #191818;
   font-size: 14px;
-  font-family: "Museo Sans Cyrl 100", sans-serif;
+  font-family: "Museo Sans Cyrl 300", sans-serif;
 /*  animation: fadein 3s;*/
   height: 100%;
   position: relative;
@@ -44,26 +46,19 @@ html,body {
 }
 
 .page-wrapper {
+  position: relative;
   min-height:100%;
   margin-bottom: -115px;
 }
 
-.page-wrapper:after {
-  content:"";
+.page-wrapper::after {
+  content:" ";
   display: block;
 }
 
 #footer,
-.page-wrapper:after {
+.page-wrapper::after {
   height: 115px;
-}
-
-.inner-header {
-  min-width: 100%;
-  min-height: 800px;
-  background: url(../images/header_image.png) center no-repeat;
-  background-size: cover;
-/*padding: 300px 0 200px 0;*/
 }
 
 header h1 {
@@ -78,8 +73,13 @@ header h1 {
   z-index:99;
   font-size: 16px;
   background-color: rgba(255,255,255,.6);
-  padding-bottom: 15px;
+  /*padding-bottom: 15px; */
+  padding: 12px 0 15px;
 }
+
+.navbar-nav li {
+    padding-top: 15px !important;
+ }
 
 .navbar-nav a {
   line-height: 40px !important;
@@ -115,12 +115,13 @@ header h1 {
   background: #ff0000;
   transition: width .3s;
   -webkit-transition: width .3s;
-  -moz-kit-transition: width .3s;
+  -o-transition: width .3s;
+  -moz-transition: width .3s;
 }
 
 @keyframes goto {
   from {
-    width:0%;
+    width:0;
     opacity:0;
   }
   to {
@@ -134,7 +135,7 @@ header h1 {
 }
 
 .navbar-nav .active:after {
-  content:'';
+  content:" ";
   display: block;
   color: #ff0000 !important;
   animation: goto .3s ease-in-out;
@@ -148,21 +149,23 @@ header h1 {
   padding-right:40px;
 }
 
-.logo {
+ .logo {
     width: 40px;
     height: 40px;
     background-color: transparent;
     border-radius: 50%;
     border: 3px solid red;
     float: left;
+    position:relative;
+    margin-right:40px;
 }
+
 .fixed {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   opacity: 1;
-  //background-color: #fff;
 }
 .nav-palceholder {
   margin: 0 0 20px 0;
@@ -170,14 +173,15 @@ header h1 {
 .navbar-brand h5{
   font-weight: 900;
   margin: 1px 0px 0px 0;
-  padding: 0 0 0 50px;
+  /* padding: 0 0 0 15px; */
   font-size: 17px;
+  position: relative;
+  right:28px;
 }
 .navbar-collapse{
   width: 100%;
   height:100%;
 /*  animation: fadein 3s;*/
-
 }
 
 /* Language */
@@ -194,45 +198,63 @@ header h1 {
   transition: .5s ease-in-out;
 }
 .lang li:nth-child(1) a, .lang li:nth-child(2) a {
-    color: #777;
+    color: #191818;
 }
 
 .lang:hover li:not(:last-child) {
-  transform: translateX(0); opacity:1; width: 25px;
+  transform: translateX(0);
+  opacity:1;
+  width: 25px;
 }
 
 .lang li a {
   color: red;
+  font-size: 13px;
 }
 span.lang li {
   padding-right: 0px !important;
 }
 span.lang{
   display: inline-block;
-  float:left;
+  float: left;
   position: relative;
-  left:2px;
 }
-
 /*End navbar*/
 
+
+/*Inner Header*/
+
+.inner-header {
+  min-width: 100%;
+  background: url(../images/header_image.png) center no-repeat;
+  background-size: cover;
+  position:relative;
+  bottom:110px;
+
+}
+
 .contest {
-  width: 50%;
+  width: 66%;
   max-width: 100%;
   background: rgba(243, 240, 239, 0.7);
   display: inline-block;
-  margin: 350px 0 200px 0;
-  padding: 0 0 0 63px;
+  margin: 445px 0 200px 0;
+  padding: 0 8em 0 0;
+  text-align: right;
   animation: fadein 1s;
 }
 .contest h1 {
   margin-left: 10px;
-  font-size: 28px;
-  margin-top: 42px;
+  font-size: 40px;
+  letter-spacing: 1.6px;
+  margin: 25px 0;
+  padding: 0 !important;
+  bottom:0 !important;
 }
+
 /*Banners*/
 .banner {
-  // margin-top: 200px;
+  position: relative;
   margin-top: 150px;
   text-align: center;
 }
@@ -255,6 +277,7 @@ span.lang{
   background: transparent;
   color: #ff0000;
   border: 1px solid #ff0000;
+  font-size:13px;
 }
 
 .book_btn:hover {
@@ -264,17 +287,27 @@ span.lang{
 }
 
 .descr-section h1 {
-  padding-bottom: 42px;
+  padding-bottom: 15px;
+  margin-top: 40px;
+  font-size:28px;
+  font-weight:normal;
+  letter-spacing: 1.6px;
 }
+
 .descr-section p{
   width: 70%;
-line-height: 25px;
-padding: 20px 0px 45px 0;
+  line-height: 25px;
+  padding: 20px 0px 20px 0;
+  font-size:15px;
+  font-weight:300;
+  letter-spacing: 1.6px;
 }
+
 .cons_block img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
+  float:right;
 }
 /*Portfolio*/
 .portfolio-box {
@@ -286,7 +319,7 @@ padding: 20px 0px 45px 0;
 }
 .image-portfolio {
   height: 250px;
-  // width: 30%;
+  /* width: 30%; */
   overflow: hidden;
 }
 .img-block img {
@@ -306,7 +339,9 @@ padding: 20px 0px 45px 0;
 .overlay-header h1 {
   line-height: 20px;
   font-size: 28px;
-  font-family: "Museo Sans Cyrl", sans-serif;
+  font-family: "Museo Sans Cyrl 100", sans-serif;
+  font-weight: 100;
+
 }
 .text-overlay {
   position: relative;
@@ -329,9 +364,11 @@ padding: 20px 0px 45px 0;
 }
 .image-portfolio:hover .img-block img {
   cursor: pointer;
+  -moz-transform: scale(2);
+  -o-transform: scale(2);
+  -webkit-transform: scale(2);
+  -ms-transform:scale(2);
   transform: scale(2);
-   -webkit-transform: scale(2); 
-      -ms-transform:scale(2);
 }
 .image-portfolio:hover {
   cursor: pointer;
@@ -343,15 +380,20 @@ padding: 20px 0px 45px 0;
   filter: brightness(50%);
 }
 .padding-fixation{
-    padding: 0px 5px 0 0;
+    padding: 0 5px 0 0;
 }
 .padding-fixation2{
-padding: 0px 0px 5px 0px;
+  padding: 0 0 5px 0;
 }
+
 /* Footer */
+
 #footer {
-  margin-top: 150px;
+  margin-top: 50px;
   border-top: 1px solid #bcbcbc;
+  /*position: absolute;
+  bottom:0;*/
+  width: 100%;
 }
 
 .footer-content .logo {
@@ -360,36 +402,45 @@ padding: 0px 0px 5px 0px;
     margin-top: 4px;
     border-color: #222222;
     position: relative;
-    margin-right: 10px;
+    margin-right: 15px;
     float: right;
 }
 
 .footer-content {
   text-align: left;
-  padding: 25px 0;
+  padding: 25px 0;/*Replace to 5 for smaller footer*/
+  margin-top: 33px;
+  margin-bottom: 33px;
 }
 
 .footer-content span {
     text-align: left;
     text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
+    /*font-size: 14px;
+    font-weight: bold;*/
+    font: bold 14px;
     float: right;
-    top: 5px;
     position: relative;
+    top: 5px;
+
 }
-.footer-content p{
+.footer-content p {
   float:right;
+  margin-top: 10px;
+  margin-bottom:0 !important;
 }
-.fix-slogan{
+
+.fix-slogan {
   padding-right:21px;
 }
-.fix-copy p{
-  padding-right:21px;
-  padding-top:10px;
+
+.fix-copy p {
+  padding: 10px 0 0 21px;
+  /*padding-right:21px;
+  padding-top:10px;*/
 }
 .hidden {
-  display: none; 
+  display: none;
 }
 
 /* Portfolio Page */
@@ -404,8 +455,11 @@ padding: 0px 0px 5px 0px;
 .portfolio-nav-head {
   padding: 0 !important;
   margin-top: 30px !important;
-
 }
+
+
+/*Portfolio Navigatation*/
+
 .portfolio-nav ul {
   list-style-type: none;
   position: relative;
@@ -462,7 +516,7 @@ padding: 0px 0px 5px 0px;
 }
 
 .portfolio-wrap .col-md-4 {
-  padding-right: 5px; 
+  padding-right: 5px;
   padding-left: 5px;
   padding-bottom: 10px;
 }
@@ -476,6 +530,10 @@ padding: 0px 0px 5px 0px;
 
 
 /* Portfolio modal */
+
+.portfolio {
+  padding-bottom: 140px;
+}
 
 #portfolio_grid .mix {
   display: none;
@@ -496,13 +554,14 @@ padding: 0px 0px 5px 0px;
 /*contact form*/
 
 .contact-t-b{
-padding: 100px 0;
-transition: 3s ease-in-out;
-animation: fadein 1s;
+  padding: 100px 0;
+  transition: 3s ease-in-out;
+  animation: fadein 1s;
+  /*position: relative;*/
 }
 .contact-bg{
   background: url('../images/contact_bg.png') no-repeat;
-
+  position: relative;
 }
 .contact-bg textarea, .contact-bg input {
   background-color: rgba(255,255,255,.5);
@@ -512,15 +571,17 @@ animation: fadein 1s;
   padding:10px;
   resize: none;
 }
+
 .contact-bg input:nth-child(4){
   width: 72%;
 }
+
 .contact-bg button{float:right;}
 .contact-bg ul li{
   list-style: none;
 }
 .contact-bg ul.list li:not(:first-child) {
-  padding-top:62px;
+  padding-top:56px;
 }
 .list li a:before{
   content: '';
@@ -531,6 +592,7 @@ animation: fadein 1s;
   position: relative;
   padding-right: 44px;
 }
+
 .list li a.phone:before{
   background: url('../images/icons/phone.png') no-repeat;
 }
@@ -579,7 +641,7 @@ animation: fadein 1s;
 
 /*left right*/
 .left{float:left;}
-.right:{float:right;}
+.right{float:right;}
 
 /*nav fix*/
 .navbar {
@@ -591,18 +653,22 @@ animation: fadein 1s;
   border-color: transparent !important;
 
 }
-.navbar-padding {
-  padding: 15px 0 !important;
-}
+
 .navbar-right {
   margin-right: 0px !important;
 }
+
+/* .navbar-brand{
+  padding: 25px 15px !important;
+}    */
+
 .about-t-b {
-padding: 50px 15px;
-animation: fadein 1s;
+  padding: 50px 15px;
+  animation: fadein 1s;
+  position: relative;
 }
-  .about-t-b h2{
-    font-weight: 100;
+.about-t-b h2{
+  font-weight: 100;
   padding-bottom: 70px;
   }
 .profile-pics div:nth-child(1),.profile-pics div:nth-child(2) {
@@ -619,7 +685,7 @@ animation: fadein 1s;
 .about-t-b p{
     padding: 5px 0;
 }
-.about-t-b h4{
+.about-t-b h4 {
   font-weight:100;
 }
 
@@ -635,7 +701,6 @@ animation: fadein 1s;
     width: 76px;
     height: 21px;
     background-position: -5px -5px;
-
 }
 
 .sprite-blum:hover {
@@ -714,6 +779,10 @@ animation: fadein 1s;
   margin-bottom: -1px;
 }
 
+.navbar-default .navbar-nav>li>a {
+      color: #191818;
+}
+
 /*Back-To-Top*/
 
 .back-to-top {
@@ -722,7 +791,7 @@ animation: fadein 1s;
   right:50px;
   bottom: 20px;
   z-index:99;
- } 
+ }
 
 .back-to-top i {
   font-size: 42px;
